@@ -12,7 +12,7 @@ OrganizeX is a C++-based smart file organization tool designed to automatically 
 - 🛡️ Handles files safely and avoids unnecessary changes
 - 💻 Simple command-line interface
 
-🛠️ Technologies Used
+ Technologies Used
 
 - C++
 - C++17 / Modern C++
