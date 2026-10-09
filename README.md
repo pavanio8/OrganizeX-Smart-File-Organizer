@@ -69,25 +69,15 @@ Downloads/
 ▶️ How to Run
 
 1. Clone the repository
-
 git clone https://github.com/pavanio8/OrganizeX-Smart-File-Organizer.git
-
 2. Open the project
-
 Open the project in Visual Studio, VS Code, Code::Blocks, or another C++ IDE.
-
 3. Compile
-
 Using g++:
-
 g++ -std=c++17 src/main.cpp -o OrganizeX
-
 4. Run
-
 ./OrganizeX
-
 On Windows:
-
 OrganizeX.exe
 
 🎯 Objective
