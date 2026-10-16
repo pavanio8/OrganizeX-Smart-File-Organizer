@@ -50,6 +50,7 @@ Downloads/
 
 After running OrganizeX:
 
+
 Downloads/
 ├── Images/
 │   └── photo.jpg
