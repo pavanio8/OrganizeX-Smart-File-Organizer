@@ -131,7 +131,9 @@ This project was developed collaboratively by:
 2. Rajiv
 3. Rithwik Siva Sai
 4. Pavani Thulasi
+
 Each team member contributed to the development, implementation, and improvement of OrganizeX – Smart File Organizer.
+
 📄 License
 
 This project is open-source and available for educational and development purposes.
