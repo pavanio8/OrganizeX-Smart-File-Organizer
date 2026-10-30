@@ -1,105 +1,135 @@
-📁 OrganizeX – Smart File Organizer
+OrganizeX – Smart File Organizer
 
-OrganizeX is a C++-based smart file organization tool designed to automatically arrange files into categorized folders based on their file types. It helps users keep their directories clean, structured, and easy to manage.
+OrganizeX is a desktop-based Smart File Organizer developed using C++17 and Qt 6. It helps users organize files automatically into categorized folders based on their file extensions.
 
-🚀 Features
+The application provides a simple graphical user interface with preview functionality, file statistics, and dark/light themes to make file management easier and safer.
 
-- 📂 Automatically organizes files into categories
-- 📝 Supports common file types such as documents, images, videos, audio, and archives
-- ⚡ Fast and efficient file organization using C++
-- 🗂️ Creates category folders automatically
-- 🔄 Reduces manual file management
-- 🛡️ Handles files safely and avoids unnecessary changes
-- 💻 Simple command-line interface
+✨ Features
 
- Technologies Used
+- Automatic File Organization: Sorts files into appropriate folders based on file extensions.
+- File Preview: Displays the files and their destination categories before organizing.
+- Smart Categorization: Supports documents, images, videos, audio, archives, programming files, and other file types.
+- Duplicate Detection: Detects existing files with the same destination name and skips conflicts instead of overwriting them.
+- Dashboard Statistics: Displays the total number of files found and categories detected.
+- Dark and Light Themes: Switch between two interface themes.
+- User Confirmation: Requires confirmation before moving files.
+- Graphical User Interface: Built with Qt 6 for a user-friendly experience.
 
-- C++
-- C++17 / Modern C++
-- STL
-- File System Library ("<filesystem>")
+🗂️ Supported File Categories
+
+Category| Supported Extensions
+Documents| PDF, DOC, DOCX, TXT, PPT, PPTX, XLS, XLSX
+Images| JPG, JPEG, PNG, GIF, BMP, SVG, WEBP
+Videos| MP4, MKV, AVI, MOV
+Audio| MP3, WAV, AAC, FLAC
+Archives| ZIP, RAR, 7Z, TAR, GZ
+Code| C, C++, H, HPP, Java, Python, JS, HTML, CSS
+Others| All other unsupported extensions
+
+🛠️ Technologies Used
+
+- Programming Language: C++17
+- GUI Framework: Qt 6 Widgets
+- Build System: CMake
+- File Management: C++ STL and "std::filesystem"
+- Data Structures: Vectors and Unordered Maps
 
 📁 Project Structure
 
-OrganizeX-Smart-File-Organizer/
-│
-├── src/
-│   └── main.cpp
+OrganizeX/
 │
 ├── include/
 │   └── organizer.h
 │
-├── README.md
+├── src/
+│   ├── main.cpp
+│   ├── mainwindow.cpp
+│   ├── mainwindow.h
+│   └── organizer.cpp
+│
+├── CMakeLists.txt
 ├── .gitignore
-└── LICENSE
+└── README.md
 
-⚙️ How It Works
+⚙️ Requirements
 
-OrganizeX scans the selected directory, identifies files based on their extensions, and moves them into appropriate folders.
+Before running the project, make sure you have:
 
-Example:
+- C++17 compatible compiler
+- Qt 6 installed
+- CMake 3.16 or later
+- Qt 6 Widgets component
 
-Before:
+🚀 Installation and Setup
 
-Downloads/
-├── photo.jpg
-├── resume.pdf
-├── song.mp3
-├── video.mp4
-└── project.zip
+1. Clone the Repository
 
-After running OrganizeX:
+git clone YOUR_REPOSITORY_URL
 
+2. Navigate to the Project Folder
 
-Downloads/
-├── Images/
-│   └── photo.jpg
-│
-├── Documents/
-│   └── resume.pdf
-│
-├── Audio/
-│   └── song.mp3
-│
-├── Videos/
-│   └── video.mp4
-│
-└── Archives/
-    └── project.zip
+cd OrganizeX
 
-▶️ How to Run
+3. Configure the Project
 
-1. Clone the repository
-git clone https://github.com/pavanio8/OrganizeX-Smart-File-Organizer.git
-2. Open the project
-Open the project in Visual Studio, VS Code, Code::Blocks, or another C++ IDE.
-3. Compile
-Using g++:
-g++ -std=c++17 src/main.cpp -o OrganizeX
-4. Run
-./OrganizeX
-On Windows:
-OrganizeX.exe
+cmake -S . -B build
 
-🎯 Objective
+4. Build the Project
 
-The main objective of OrganizeX is to automate repetitive file-management tasks and provide a simple solution for maintaining an organized digital workspace.
+cmake --build build
 
-🔮 Future Enhancements
+5. Run the Application
 
-- 🔍 Duplicate file detection
-- ✏️ Bulk file renaming
-- 📊 File statistics and storage analysis
-- 🖥️ Graphical User Interface (GUI)
-- ⚙️ Custom folder/category configuration
-- 🧠 Smarter file classification
-- 📅 Automatic scheduled organization
+Windows:
 
+build/Debug/OrganizeX.exe
 
-⭐ Contribute
+If your build configuration produces the executable directly inside the build folder:
 
-Suggestions, improvements, and contributions are welcome. Feel free to fork the repository and submit a pull request.
+build/OrganizeX.exe
+
+Linux:
+
+./build/OrganizeX
+
+📖 How to Use
+
+1. Launch the OrganizeX application.
+2. Click Browse Folder to select the folder you want to organize.
+3. Click Preview Files to view the files and their destination categories.
+4. Review the preview carefully.
+5. Tick the confirmation checkbox.
+6. Click Organize Files.
+7. Confirm the action when prompted.
+8. Your files will be moved into their respective category folders.
+
+Note: Previewing files does not move or modify them. Actual file movement happens only after confirmation.
+
+🔒 Safety and File Handling
+
+- Existing destination files are not overwritten.
+- Files with name conflicts are skipped.
+- Users can review the preview before organizing.
+- The application processes regular files in the selected folder, not files inside nested subfolders.
+
+Important: Organizing moves files from their original locations. Keep a backup of important files before performing the operation.
+
+🔮 Future Improvements
+
+- Recursive folder organization.
+- Undo and restore functionality.
+- Custom file categories.
+- Search and filter options.
+- File size and storage statistics.
+- Organization history and activity logs.
+- Drag-and-drop folder selection.
+
+👥 Contributors
+
+Developed as a collaborative C++ desktop application project.
+
+Add the GitHub usernames of all team members here.
 
 📄 License
 
-This project is open-source and available under the MIT License.
+This project is open-source and available for educational and development purposes.
