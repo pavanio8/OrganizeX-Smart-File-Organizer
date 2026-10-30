@@ -81,7 +81,6 @@ cmake --build build
 5. Run the Application
 
 Windows:
-
 build/Debug/OrganizeX.exe
 
 If your build configuration produces the executable directly inside the build folder:
