@@ -1,0 +1,15 @@
+# Build files
+build/
+cmake-build-*/
+
+# Executables
+OrganizeX
+OrganizeX.exe
+
+# IDE settings
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
