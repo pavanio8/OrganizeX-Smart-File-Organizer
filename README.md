@@ -126,10 +126,12 @@ Important: Organizing moves files from their original locations. Keep a backup o
 
 👥 Contributors
 
-Developed as a collaborative C++ desktop application project.
-
-Add the GitHub usernames of all team members here.
-
+This project was developed collaboratively by:
+1. Saranya Sai
+2. Rajiv
+3. Rithwik Siva Sai
+4. Pavani Thulasi
+Each team member contributed to the development, implementation, and improvement of OrganizeX – Smart File Organizer.
 📄 License
 
 This project is open-source and available for educational and development purposes.
