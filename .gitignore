@@ -1,0 +1,13 @@
+/OrganizeX_Data/
+/backend/build/
+/backend/*.exe
+/backend/*.dll
+/backend/*.lib
+/backend/*.a
+/backend/*.o
+/backend/*.obj
+/.vscode/
+/.idea/
+.DS_Store
+Thumbs.db
+frontend/oracleJdk-27/

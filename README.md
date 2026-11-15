@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 OrganizeX – Smart File Organizer
 
 OrganizeX is a desktop-based Smart File Organizer developed using C++17 and Qt 6. It helps users organize files automatically into categorized folders based on their file extensions.
@@ -136,3 +137,83 @@ Each team member contributed to the development, implementation, and improvement
 📄 License
 
 This project is open-source and available for educational and development purposes.
+=======
+# OrganizeX — Smart File Organizer
+
+OrganizeX is a local web application with a C++17 HTTP backend and a responsive, vanilla-JavaScript dashboard. Uploaded files are first saved to `OrganizeX_Data/Inbox`; the **Organize inbox** action moves them into category folders after confirmation. Files are not deleted by the application.
+
+## Requirements
+
+- CMake 3.16 or newer
+- A C++17 compiler (for example, MSVC 2019+, GCC 8+, or Clang 7+)
+- Git and an internet connection for the first CMake configure, to fetch cpp-httplib and nlohmann/json
+- Node.js 18 or newer to serve the frontend
+
+The backend binds only to `127.0.0.1:8080`. Its default storage root is `OrganizeX_Data` in the process working directory. Uploads are limited to 50 MB per file, 100 MB per request, and 100 files per request.
+
+## Run on Windows
+
+From the project directory, double-click `start-organizex.bat`, or run:
+
+```powershell
+cmake -S backend -B backend\build
+cmake --build backend\build --config Release
+node frontend\server.js
+```
+
+In a second terminal, start the backend from the project root (so its data folder is created in the expected location):
+
+```powershell
+.\backend\build\Release\organizeX_server.exe
+```
+
+For single-configuration CMake generators, the executable may instead be at `backend\build\organizeX_server.exe`. Open the frontend at [http://127.0.0.1:5500](http://127.0.0.1:5500); its configured API base URL is `http://127.0.0.1:8080`. The batch launcher builds the backend, starts the frontend in a second window, and runs the backend in the current window.
+
+## API
+
+| Method | Route | Purpose |
+|---|---|---|
+| `GET` | `/api/status` | Backend connection and status |
+| `POST` | `/api/upload` | Upload one or more multipart fields named `files` |
+| `GET` | `/api/preview` | Preview inbox category and relative destination without moving files |
+| `POST` | `/api/organize` | Move inbox files after user confirmation; reports each result |
+| `GET` | `/api/statistics` | File totals, storage, pending/organized counts, and category counts |
+
+Example checks:
+
+```powershell
+Invoke-RestMethod http://127.0.0.1:8080/api/status
+Invoke-RestMethod http://127.0.0.1:8080/api/preview
+Invoke-RestMethod http://127.0.0.1:8080/api/statistics
+```
+
+The API does not return absolute filesystem paths. Unrecognized extensions are safely categorized as `Others`. Duplicate names receive a numeric suffix. Symlinks are excluded from file listings, and failed moves leave the original in Inbox.
+
+## Storage layout
+
+```text
+OrganizeX_Data/
+├── Inbox/
+└── Organized/
+    ├── Documents/
+    ├── Images/
+    ├── Videos/
+    ├── Audio/
+    ├── Archives/
+    ├── Code/
+    └── Others/
+```
+
+## End-to-end smoke test
+
+1. Start the server and open `http://127.0.0.1:5500`.
+2. Confirm the green backend indicator appears.
+3. Select several local files, including repeated filenames from separate folders if available, then upload.
+4. Confirm the files appear in `OrganizeX_Data\Inbox` and in the organization preview.
+5. Check the detected categories and destination paths before organizing.
+6. Click **Organize inbox**, accept the confirmation, and verify files move into `OrganizeX_Data\Organized\<Category>`.
+7. Refresh the dashboard and check totals, storage, and per-category counts.
+8. Try an unknown extension; it is categorized as `Others`. Try a file over 50 MB, an empty upload selection, and a disconnected backend to verify the error and reconnect states.
+
+The upload endpoint uses multipart form data and partial success: any files accepted are saved, while rejected file results are returned in `errors`. Each result includes the file's zero-based index in the submitted `files` fields so the frontend can retain only failed selections for retry. The frontend reports these results and refreshes from the API.
+>>>>>>> 8b99b2b (Initial OrganizeX project)

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-api-base-url="http://127.0.0.1:8080">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b1020">
+    <title>OrganizeX — Smart File Organizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <a class="brand" href="#overview" aria-label="OrganizeX dashboard">
+            <span class="brand-mark" aria-hidden="true">O</span>
+            <span>Organize<span class="brand-accent">X</span></span>
+        </a>
+
+        <p class="nav-label">WORKSPACE</p>
+        <nav class="navigation" aria-label="Main navigation">
+            <a class="nav-link active" href="#overview"><span aria-hidden="true">⌂</span> Dashboard</a>
+            <a class="nav-link" href="#organizer"><span aria-hidden="true">▤</span> File organizer</a>
+            <a class="nav-link" href="#statistics"><span aria-hidden="true">▥</span> Statistics</a>
+            <a class="nav-link" href="#about"><span aria-hidden="true">ⓘ</span> About</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="storage-icon" aria-hidden="true">⌁</div>
+            <p class="eyebrow">YOUR FILES STAY LOCAL</p>
+            <p>OrganizeX works with a private folder on this computer.</p>
+            <span class="version">LOCAL EDITION · C++17</span>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">PERSONAL WORKSPACE</p>
+                <h1>Dashboard</h1>
+            </div>
+            <div class="topbar-actions">
+                <div class="connection" role="status" aria-live="polite">
+                    <span id="statusIndicator" class="status-dot"></span>
+                    <span id="statusText">Checking backend…</span>
+                </div>
+                <button id="refreshBtn" class="icon-button" type="button" aria-label="Refresh dashboard" title="Refresh dashboard">↻</button>
+            </div>
+        </header>
+
+        <section id="overview" class="welcome-card">
+            <div class="welcome-copy">
+                <p class="eyebrow">YOUR FILES, IN GOOD ORDER</p>
+                <h2>Make room for what matters.</h2>
+                <p>Drop in a few files. OrganizeX sorts them into clear folders, right on your computer.</p>
+                <a class="welcome-link" href="#organizer">Go to file organizer <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="welcome-art" aria-hidden="true">
+                <div class="art-folder folder-back"></div>
+                <div class="art-folder folder-front"><span>OX</span></div>
+                <i class="art-spark spark-one"></i>
+                <i class="art-spark spark-two"></i>
+            </div>
+        </section>
+
+        <section class="stats-grid" aria-label="File overview">
+            <article class="stat-card">
+                <div class="stat-top"><span class="stat-icon violet" aria-hidden="true">▤</span><span class="stat-caption">ALL FILES</span></div>
+                <strong id="totalFiles">—</strong>
+                <span class="stat-note">In your workspace</span>
+            </article>
+            <article class="stat-card">
+                <div class="stat-top"><span class="stat-icon green" aria-hidden="true">✓</span><span class="stat-caption">ORGANIZED</span></div>
+                <strong id="organizedFiles">—</strong>
+                <span class="stat-note">Sorted into folders</span>
+            </article>
+            <article class="stat-card">
+                <div class="stat-top"><span class="stat-icon blue" aria-hidden="true">◫</span><span class="stat-caption">STORAGE USED</span></div>
+                <strong id="storageUsed">—</strong>
+                <span class="stat-note">Across all categories</span>
+            </article>
+            <article class="stat-card">
+                <div class="stat-top"><span class="stat-icon amber" aria-hidden="true">▦</span><span class="stat-caption">CATEGORIES</span></div>
+                <strong id="categoriesCount">—</strong>
+                <span class="stat-note">Ready to sort your files</span>
+            </article>
+        </section>
+
+        <section id="organizer" class="content-grid">
+            <article class="panel upload-panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">ADD TO YOUR INBOX</p>
+                        <h2>Upload files</h2>
+                    </div>
+                    <span class="limit-badge">Up to 50 MB each</span>
+                </div>
+
+                <div id="dropArea" class="drop-area">
+                    <div class="upload-symbol" aria-hidden="true">↑</div>
+                    <h3>Drag files here to get started</h3>
+                    <p>or <button id="browseBtn" class="text-button" type="button">browse your computer</button></p>
+                    <span class="drop-note">Multiple files supported · Stored locally on this device</span>
+                    <input id="fileInput" type="file" multiple hidden>
+                </div>
+
+                <div class="selected-heading">
+                    <span>Selected files</span>
+                    <span id="selectedCount" class="subtle">0 files</span>
+                </div>
+                <ul id="selectedFiles" class="selected-files" aria-live="polite">
+                    <li class="selection-empty">Choose files to see them here.</li>
+                </ul>
+
+                <div id="progressWrap" class="progress-wrap" hidden>
+                    <div class="progress-meta"><span id="progressLabel">Uploading…</span><span id="progressPercent">0%</span></div>
+                    <div class="progress-track"><span id="progressBar"></span></div>
+                </div>
+                <div class="button-row">
+                    <button id="clearSelectionBtn" class="button secondary-button" type="button">Clear selection</button>
+                    <button id="uploadBtn" class="button primary-button" type="button" disabled>Upload files <span aria-hidden="true">↑</span></button>
+                </div>
+                <p class="privacy-note"><span aria-hidden="true">▣</span> Files are saved to <b>OrganizeX_Data/Inbox</b>. Nothing moves until you confirm.</p>
+            </article>
+
+            <article id="statistics" class="panel categories-panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">YOUR LIBRARY</p>
+                        <h2>By category</h2>
+                    </div>
+                    <span class="live-badge"><i></i> LIVE</span>
+                </div>
+                <p class="panel-description">Files in your inbox and organized folders.</p>
+                <div id="categoryStats" class="category-stats">
+                    <p class="empty-note">Connect to the backend to load category totals.</p>
+                </div>
+                <div class="category-foot"><span id="pendingSummary">Pending files: —</span><span id="organizedSummary">Organized: —</span></div>
+            </article>
+        </section>
+
+        <section class="panel files-panel">
+            <div class="panel-heading files-heading">
+                <div>
+                    <p class="eyebrow">REVIEW BEFORE YOU SORT</p>
+                    <h2>Organization preview</h2>
+                    <p class="panel-description">These inbox files will be moved when you organize.</p>
+                </div>
+                <button id="previewBtn" class="button secondary-button" type="button">↻ Refresh preview</button>
+            </div>
+            <div class="table-toolbar">
+                <label class="search-box">
+                    <span aria-hidden="true">⌕</span>
+                    <input id="searchInput" type="search" placeholder="Search inbox files…" aria-label="Search inbox files">
+                </label>
+                <label class="filter-label">Category
+                    <select id="categoryFilter" aria-label="Filter by category">
+                        <option value="">All categories</option>
+                    </select>
+                </label>
+                <span id="fileCount" class="file-count">0 pending</span>
+            </div>
+            <div class="table-scroll">
+                <table>
+                    <thead><tr><th>FILE NAME</th><th>TYPE</th><th>SIZE</th><th>DESTINATION</th></tr></thead>
+                    <tbody id="fileTable">
+                        <tr><td class="table-empty" colspan="4">Connect to the backend to load your inbox.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="organize-footer">
+                <span id="previewHint">Your files stay in Inbox until you organize them.</span>
+                <button id="organizeBtn" class="button organize-button" type="button" disabled>Organize inbox <span aria-hidden="true">→</span></button>
+            </div>
+        </section>
+
+        <footer id="about" class="page-footer">
+            <span>OrganizeX <span aria-hidden="true">·</span> A private, local-first file workspace</span>
+            <span>Backend: <code>127.0.0.1:8080</code></span>
+        </footer>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="script.js"></script>
+</body>
+</html>
