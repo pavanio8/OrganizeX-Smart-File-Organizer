@@ -206,7 +206,7 @@ OrganizeX_Data/
 
 ## End-to-end smoke test
 
-1. Start the server and open `http://127.0.0.1:5500`.
+1. Start the server and open `http://127.0.0.1:5500.
 2. Confirm the green backend indicator appears.
 3. Select several local files, including repeated filenames from separate folders if available, then upload.
 4. Confirm the files appear in `OrganizeX_Data\Inbox` and in the organization preview.
